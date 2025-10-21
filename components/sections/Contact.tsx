@@ -34,7 +34,7 @@ export default function Contact() {
       } else {
         setSubmitStatus('error');
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -76,7 +76,7 @@ export default function Contact() {
               viewport={{ once: true }}
               className="inline-block text-sm font-semibold tracking-[0.2em] uppercase text-primary-400 mb-6"
             >
-              Let's Talk
+              Let&apos;s Talk
             </motion.span>
 
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1]">
@@ -220,7 +220,7 @@ export default function Contact() {
               {/* Trust badge */}
               <div className="mt-8 pt-8 border-t border-white/10 text-center">
                 <p className="text-sm text-gray-400">
-                  We'll get back to you within 24 hours ⚡
+                  We&apos;ll get back to you within 24 hours ⚡
                 </p>
               </div>
             </div>

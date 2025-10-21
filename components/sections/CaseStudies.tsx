@@ -277,7 +277,7 @@ export default function CaseStudies() {
               transition={{ duration: 0.3 }}
             />
             <span className="relative flex items-center gap-2">
-              Let's Talk About Your Project
+              Let&apos;s Talk About Your Project
               <ArrowUpRight className="w-5 h-5" />
             </span>
           </motion.button>

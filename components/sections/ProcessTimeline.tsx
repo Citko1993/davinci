@@ -17,8 +17,8 @@ export default function ProcessTimeline() {
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.2], [100, 0]);
+  // const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  // const y = useTransform(scrollYProgress, [0, 0.2], [100, 0]);
 
   const handleScroll = (direction: 'left' | 'right') => {
     if (!scrollRef.current) return;
