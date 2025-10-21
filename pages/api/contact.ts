@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || 're_VmLcVGhh_H2GtUgq62XAt5oHLLEUvJ3z3');
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
