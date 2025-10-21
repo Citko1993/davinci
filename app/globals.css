@@ -169,4 +169,9 @@ html {
   .scrollbar-hide {
     scroll-behavior: auto;
   }
+  
+  /* Custom radial gradient */
+  .bg-gradient-radial {
+    background: radial-gradient(circle at center, var(--tw-gradient-stops));
+  }
 }

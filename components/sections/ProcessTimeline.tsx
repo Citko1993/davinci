@@ -131,27 +131,43 @@ export default function ProcessTimeline() {
       id="services" 
       className="relative py-20 sm:py-32 overflow-x-hidden bg-dark-950"
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-dark-950 via-dark-900/30 to-dark-950" />
-      <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-dark-950/80" />
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.015]" />
-
-      {/* Subtle animated background */}
+      {/* Background - smooth multi-layer approach */}
+      <div className="absolute inset-0 bg-dark-950" />
+      
+      {/* Soft gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-dark-950 via-dark-900/20 to-dark-950" />
+      
+      {/* Subtle radial gradients for depth */}
+      <div className="absolute inset-0 bg-gradient-radial from-dark-900/30 via-transparent to-transparent" />
+      
+      {/* Animated orbs for subtle movement */}
       <motion.div
         animate={{
-          scale: [1, 1.05, 1],
-          opacity: [0.03, 0.08, 0.03],
+          x: [0, 100, 0],
+          y: [0, -50, 0],
+          opacity: [0.02, 0.05, 0.02],
         }}
         transition={{
-          duration: 25,
+          duration: 30,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-1/4 -left-48 w-96 h-96 bg-primary-500/8 rounded-full blur-[120px]"
+        className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary-500/5 rounded-full blur-[150px]"
       />
       
-      {/* Additional smooth gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dark-900/15 to-transparent" />
+      <motion.div
+        animate={{
+          x: [0, -80, 0],
+          y: [0, 60, 0],
+          opacity: [0.03, 0.06, 0.03],
+        }}
+        transition={{
+          duration: 35,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-cyan-500/4 rounded-full blur-[120px]"
+      />
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
