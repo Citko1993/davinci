@@ -149,7 +149,7 @@ export default function SpatialHero() {
                     transition={{ duration: 2, repeat: Infinity }}
                   />
                   <span className="text-xs sm:text-sm font-medium text-gray-200 tracking-wide">
-                    Learn First • Build Second
+                    AI that actually works
                   </span>
                 </motion.div>
               </div>
@@ -164,7 +164,7 @@ export default function SpatialHero() {
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
               >
                 <span className="block text-white mb-2">
-                  We Learn Your Business.
+                  Stop wasting hours
                 </span>
                 <span 
                   className="block"
@@ -175,7 +175,7 @@ export default function SpatialHero() {
                     backgroundClip: 'text',
                   }}
                 >
-                  Then Build AI That Works.
+                  on tasks AI can do
                 </span>
               </motion.h1>
 
@@ -186,8 +186,7 @@ export default function SpatialHero() {
                 transition={{ duration: 1, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
                 className="text-lg sm:text-xl lg:text-2xl text-gray-400 max-w-3xl leading-relaxed font-light"
               >
-                No generic solutions. No trendy buzzwords. 
-                Just systems tailored to solve your specific bottlenecks.
+                We find what's draining your team's time, calculate the ROI, then build custom AI that actually saves you money.
               </motion.p>
             </div>
 
@@ -202,8 +201,8 @@ export default function SpatialHero() {
                 variant="primary"
                 onClick={() => scrollToSection('#contact')}
               >
-                <span className="hidden sm:inline">Show Me Where AI Fits</span>
-                <span className="inline sm:hidden">Where AI Fits</span>
+                <span className="hidden sm:inline">Show me what I'm wasting</span>
+                <span className="inline sm:hidden">Show me</span>
                 <motion.div
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -219,7 +218,7 @@ export default function SpatialHero() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
                 </svg>
-                See How We Work
+                See the process
               </MagneticButton>
             </motion.div>
 
@@ -259,7 +258,7 @@ export default function SpatialHero() {
                   />
                 </div>
               </div>
-              <span>Trusted by growing companies across Europe</span>
+              <span>Already saving hours for teams across Europe</span>
             </motion.div>
           </div>
 
