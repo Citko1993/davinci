@@ -15,7 +15,7 @@ import {
   Sparkles
 } from 'lucide-react';
 
-export default function ProcessTimeline() {
+export default function ProcessTimelineAwwwards() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
