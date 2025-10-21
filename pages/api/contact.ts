@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     await resend.emails.send({
-      from: 'noreply@davinci.agency', // Zweryfikowana domena
+      from: 'onboarding@resend.dev', // Domena Resend
       to: ['apps@davinci.agency'],
       subject: `Nowa wiadomość od ${name}`,
       html: `
@@ -27,6 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
     console.error('Error sending email:', error);
-    res.status(500).json({ message: 'Error sending email' });
+    console.error('Error details:', JSON.stringify(error, null, 2));
+    res.status(500).json({ message: 'Error sending email', error: error.message });
   }
 }
