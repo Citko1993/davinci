@@ -186,7 +186,7 @@ export default function SpatialHero() {
                 transition={{ duration: 1, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
                 className="text-lg sm:text-xl lg:text-2xl text-gray-400 max-w-3xl leading-relaxed font-light"
               >
-                We find what's draining your team's time, calculate the ROI, then build custom AI that actually saves you money.
+                We find what&apos;s draining your team&apos;s time, calculate the ROI, then build custom AI that actually saves you money.
               </motion.p>
             </div>
 
@@ -201,7 +201,7 @@ export default function SpatialHero() {
                 variant="primary"
                 onClick={() => scrollToSection('#contact')}
               >
-                <span className="hidden sm:inline">Show me what I'm wasting</span>
+                <span className="hidden sm:inline">Show me what I&apos;m wasting</span>
                 <span className="inline sm:hidden">Show me</span>
                 <motion.div
                   animate={{ x: [0, 5, 0] }}
