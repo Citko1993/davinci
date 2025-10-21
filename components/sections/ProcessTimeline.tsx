@@ -132,22 +132,26 @@ export default function ProcessTimeline() {
       className="relative py-20 sm:py-32 overflow-x-hidden bg-dark-950"
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-950 via-dark-900/50 to-dark-950" />
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-dark-950 via-dark-900/30 to-dark-950" />
+      <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-dark-950/80" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.015]" />
 
       {/* Subtle animated background */}
       <motion.div
         animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.05, 0.1, 0.05],
+          scale: [1, 1.05, 1],
+          opacity: [0.03, 0.08, 0.03],
         }}
         transition={{
-          duration: 20,
+          duration: 25,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-1/4 -left-48 w-96 h-96 bg-primary-500/10 rounded-full blur-[120px]"
+        className="absolute top-1/4 -left-48 w-96 h-96 bg-primary-500/8 rounded-full blur-[120px]"
       />
+      
+      {/* Additional smooth gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dark-900/15 to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
