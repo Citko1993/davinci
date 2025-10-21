@@ -1,169 +1,117 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { 
   Brain, 
   Search, 
   Rocket, 
-  Code, 
-  Zap, 
-  BarChart3, 
-  Bot, 
-  ShieldCheck,
   ArrowRight,
+  CheckCircle2,
   Sparkles
 } from 'lucide-react';
 
 export default function ProcessTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [showLeftArrow, setShowLeftArrow] = useState(false);
-  const [showRightArrow, setShowRightArrow] = useState(false);
-
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
-  const checkScrollPosition = () => {
-    if (containerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
-      setShowLeftArrow(scrollLeft > 10);
-      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
-
-  useEffect(() => {
-    checkScrollPosition();
-    const handleResize = () => checkScrollPosition();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Timeline steps - używam PRAWDZIWYCH opisów z waszego procesu
-  const timelineSteps = [
+  const processSteps = [
     {
       number: "01",
-      title: "Discovery",
-      description: "We spend time understanding how your business actually works. Where you lose time, where data gets stuck, where decisions slow down.",
+      title: "Find the pain",
+      description: "We map your workflows, find where hours disappear, and pinpoint what's actually costing you money.",
       icon: Brain,
-      color: 'primary' as const,
-      activities: [
-        "Interviews with your team across departments",
-        "Workflow mapping and bottleneck identification",
-        "Data audit - where it lives, how it flows",
-        "Pain point prioritization"
+      gradient: "from-blue-500 to-cyan-500",
+      color: "primary",
+      features: [
+        "Interview your team (not executives)",
+        "Map real workflows (not ideal ones)",
+        "Audit where data gets stuck",
+        "Find the biggest time wasters"
       ]
     },
     {
       number: "02",
-      title: "ROI Mapping",
-      description: "We find where AI adds real value—not where it's trendy. We show you exactly what problems are worth solving and why.",
+      title: "Calculate ROI",
+      description: "No guessing. We show you exactly how much time and money you'll save—before we build anything.",
       icon: Search,
-      color: 'cyan' as const,
-      activities: [
-        "Opportunity analysis - what can be automated",
-        "Cost-benefit breakdown for each solution",
-        "Timeline and resource planning",
-        "Risk assessment and mitigation"
+      gradient: "from-cyan-500 to-teal-500",
+      color: "cyan",
+      features: [
+        "Hours saved per week",
+        "Cost vs. benefit breakdown",
+        "Expected payback timeline",
+        "Risk analysis (what could go wrong)"
       ]
     },
     {
       number: "03",
-      title: "Build & Deploy",
-      description: "We build custom systems, handle integrations, and provide ongoing support. No off-the-shelf software—just what you need.",
+      title: "Build it right",
+      description: "Custom AI that fits your process. Not some off-the-shelf tool you'll stop using in 3 months.",
       icon: Rocket,
-      color: 'primary' as const,
-      activities: [
-        "Custom development tailored to your needs",
-        "Integration with existing tools (CRM, accounting, etc.)",
-        "Team training and documentation",
-        "Ongoing support and optimization"
+      gradient: "from-teal-500 to-blue-500",
+      color: "primary",
+      features: [
+        "Built for your specific workflow",
+        "Integrates with your tools",
+        "Train your team properly",
+        "Support when things break"
       ]
     }
-  ];
-
-  const serviceCards = [
-    {
-      icon: Code,
-      title: 'We Build Custom Systems',
-      description: 'No off-the-shelf software. We build exactly what you need. Automations, dashboards, integrations—whatever solves your specific problem.',
-    },
-    {
-      icon: Zap,
-      title: 'We Handle Integrations',
-      description: 'Your CRM, your accounting software, your spreadsheets—we connect everything so data flows automatically.',
-    },
-    {
-      icon: BarChart3,
-      title: 'Real-Time Dashboards',
-      description: 'You get dashboards that show what\'s happening right now. No more waiting for reports.',
-    },
-    {
-      icon: Bot,
-      title: 'We Train Your Team',
-      description: 'We don\'t just hand you a system and leave. We make sure your team knows how to use it.',
-    },
-    {
-      icon: ShieldCheck,
-      title: 'Ongoing Support',
-      description: 'When something breaks or needs to change, we\'re here. No tickets, no waiting weeks.',
-    },
   ];
 
   return (
     <section 
       ref={containerRef}
       id="services" 
-      className="relative py-32 sm:py-48 overflow-hidden bg-dark-950"
+      className="relative py-24 sm:py-32 lg:py-40 bg-dark-950 overflow-hidden"
     >
-      {/* Clean minimal background */}
-      <div className="absolute inset-0 bg-dark-950" />
-      
-      {/* Subtle texture overlay */}
-      <div className="absolute inset-0 opacity-[0.02] bg-grid-pattern" />
-      
-      {/* Single floating element - minimal */}
-      <motion.div
-        animate={{
-          y: [0, -20, 0],
-          opacity: [0.03, 0.08, 0.03],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary-500/5 rounded-full blur-3xl"
+      {/* Animated background elements with parallax */}
+      <motion.div 
+        style={{ y: y1 }}
+        className="absolute top-20 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl"
+      />
+      <motion.div 
+        style={{ y: y2 }}
+        className="absolute bottom-20 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Section Header - Clean & Simple */}
-        <div className="mb-20 text-center">
-          <motion.span 
+      <motion.div 
+        style={{ opacity }}
+        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        {/* Header - Premium Typography */}
+        <div className="max-w-4xl mx-auto mb-20 sm:mb-28 text-center">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-block text-sm font-semibold tracking-[0.2em] uppercase text-primary-400 mb-6"
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-6"
           >
-            Our Process
-          </motion.span>
+            <div className="w-2 h-2 bg-primary-400 rounded-full animate-pulse" />
+            <span className="text-xs sm:text-sm font-medium text-gray-400 tracking-wider uppercase">Our Process</span>
+          </motion.div>
           
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 leading-[1.1]"
           >
-            <span className="block text-white mb-3">
-              How We Work
-            </span>
-            <span className="block text-primary-400">
-              With You
+            <span className="block text-white mb-2">From bottleneck</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-cyan-400 to-primary-400 bg-[length:200%_auto] animate-gradient">
+              to breakthrough
             </span>
           </motion.h2>
           
@@ -171,108 +119,141 @@ export default function ProcessTimeline() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-lg sm:text-xl lg:text-2xl text-gray-400 leading-relaxed max-w-3xl mx-auto"
           >
-            We understand first, build second. No generic solutions—just systems tailored to your specific bottlenecks.
+            Three steps. Zero fluff. Just AI that actually saves you time and money.
           </motion.p>
         </div>
 
-        {/* Timeline Steps - Clean Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
-          {timelineSteps.map((step, index) => (
+        {/* Process Steps - Premium Bento Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-20">
+          {processSteps.map((step, index) => (
             <motion.div
               key={step.number}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="group"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+              onMouseEnter={() => setHoveredCard(index)}
+              onMouseLeave={() => setHoveredCard(null)}
+              className="group relative"
             >
-              <div className="p-8 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-colors duration-300">
-                {/* Number Badge */}
-                <div className="mb-6">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-500/20 text-xl font-bold text-primary-400 mb-4">
-                    {step.number}
-                  </div>
-                  
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`p-2 rounded-lg ${step.color === 'primary' ? 'bg-primary-500/20' : 'bg-cyan-500/20'}`}>
-                      <step.icon className={`w-5 h-5 ${step.color === 'primary' ? 'text-primary-400' : 'text-cyan-400'}`} />
-                    </div>
-                    <h3 className="text-xl font-bold text-white">{step.title}</h3>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="text-gray-300 leading-relaxed mb-6">
-                  {step.description}
-                </p>
-
-                {/* Activities List */}
-                <div className="space-y-2">
-                  {step.activities.map((activity, activityIndex) => (
-                    <div
-                      key={activityIndex}
-                      className="flex items-center gap-3 text-sm text-gray-400"
+              <div className="relative h-full p-6 sm:p-8 bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden backdrop-blur-sm transition-all duration-500 hover:bg-white/[0.04] hover:border-white/20">
+                {/* Animated gradient overlay */}
+                <motion.div 
+                  animate={{
+                    opacity: hoveredCard === index ? 0.08 : 0,
+                    scale: hoveredCard === index ? 1.5 : 1,
+                  }}
+                  transition={{ duration: 0.6 }}
+                  className={`absolute inset-0 bg-gradient-to-br ${step.gradient} blur-2xl`}
+                />
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Number & Icon */}
+                  <div className="flex items-start justify-between mb-8">
+                    <motion.div 
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      className={`p-3 sm:p-4 rounded-2xl bg-gradient-to-br ${step.gradient} shadow-lg`}
                     >
-                      <div className={`w-1.5 h-1.5 rounded-full ${step.color === 'primary' ? 'bg-primary-400' : 'bg-cyan-400'}`} />
-                      <span>{activity}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Service Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {serviceCards.map((card, index) => (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group"
-            >
-              <div className="p-6 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors duration-300 h-full">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-lg bg-primary-500/20">
-                    <card.icon className="w-5 h-5 text-primary-400" />
+                      <step.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    </motion.div>
+                    <span className="text-6xl sm:text-7xl font-bold text-white/5 group-hover:text-white/10 transition-colors duration-500">
+                      {step.number}
+                    </span>
                   </div>
-                  <h4 className="text-lg font-semibold text-white">{card.title}</h4>
+
+                  {/* Title */}
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 transition-all duration-300">
+                    {step.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-base sm:text-lg text-gray-400 leading-relaxed mb-8">
+                    {step.description}
+                  </p>
+
+                  {/* Features */}
+                  <div className="space-y-3">
+                    {step.features.map((feature, featureIndex) => (
+                      <motion.div
+                        key={featureIndex}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: index * 0.1 + featureIndex * 0.08 }}
+                        whileHover={{ x: 4 }}
+                        className="flex items-center gap-3 group/item cursor-default"
+                      >
+                        <CheckCircle2 className="w-4 h-4 text-primary-400 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                        <span className="text-sm sm:text-base text-gray-500 group-hover/item:text-gray-300 transition-colors">
+                          {feature}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed">{card.description}</p>
+
+                {/* Bottom gradient line with animation */}
+                <motion.div 
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: hoveredCard === index ? 1 : 0 }}
+                  transition={{ duration: 0.5 }}
+                  className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r ${step.gradient} origin-left`}
+                />
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* CTA Section */}
+        {/* CTA - Magnetic Button Effect */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          className="relative"
         >
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => {
-              const element = document.querySelector('#contact');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="px-8 py-4 bg-primary-500 hover:bg-primary-600 rounded-xl font-semibold text-lg text-white transition-colors duration-300"
-          >
-            Get a Process Review
-          </motion.button>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-8 sm:p-10 lg:p-12 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-3xl backdrop-blur-sm">
+            <div className="text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-2 mb-3">
+                <Sparkles className="w-5 h-5 text-primary-400" />
+                <span className="text-sm font-medium text-primary-400 tracking-wide">Stop wasting time</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
+                See where your money goes
+              </h3>
+              <p className="text-gray-400 mt-2">Free 30-min process audit. No pitch, just insights.</p>
+            </div>
+            
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                const element = document.querySelector('#contact');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="group relative px-8 py-4 bg-white text-dark-950 rounded-full font-semibold text-lg overflow-hidden shadow-2xl shadow-white/10 hover:shadow-white/30 transition-all duration-300 whitespace-nowrap"
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-primary-400 to-cyan-400"
+                initial={{ x: '100%' }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+              <span className="relative flex items-center gap-2 group-hover:text-white transition-colors">
+                Book your audit
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </motion.button>
+          </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
