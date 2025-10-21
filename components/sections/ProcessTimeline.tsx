@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Brain, Search, Rocket, BrainCircuit, Code, Zap, BarChart3, Bot, ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import TimelineStep from './TimelineStep';
