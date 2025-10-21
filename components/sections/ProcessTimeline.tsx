@@ -117,213 +117,110 @@ export default function ProcessTimeline() {
     <section 
       ref={containerRef}
       id="services" 
-      className="relative py-32 sm:py-48 overflow-hidden"
-      style={{
-        background: `
-          radial-gradient(ellipse at top, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-          radial-gradient(ellipse at bottom, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
-          linear-gradient(135deg, #0a0a0a 0%, #111111 50%, #0a0a0a 100%)
-        `
-      }}
+      className="relative py-32 sm:py-48 overflow-hidden bg-dark-950"
     >
-      {/* Floating 3D Elements */}
-      <motion.div
-        animate={{
-          rotateY: [0, 360],
-          rotateX: [0, 15, 0],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary-500/20 to-cyan-500/20 rounded-2xl blur-sm"
-        style={{
-          transform: 'perspective(1000px) rotateX(60deg)',
-          boxShadow: '0 0 100px rgba(59, 130, 246, 0.1)'
-        }}
-      />
+      {/* Clean minimal background */}
+      <div className="absolute inset-0 bg-dark-950" />
       
+      {/* Subtle texture overlay */}
+      <div className="absolute inset-0 opacity-[0.02] bg-grid-pattern" />
+      
+      {/* Single floating element - minimal */}
       <motion.div
         animate={{
-          rotateY: [360, 0],
-          rotateX: [0, -10, 0],
+          y: [0, -20, 0],
+          opacity: [0.03, 0.08, 0.03],
         }}
         transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-to-br from-cyan-500/20 to-primary-500/20 rounded-full blur-sm"
-        style={{
-          transform: 'perspective(1000px) rotateX(45deg)',
-          boxShadow: '0 0 80px rgba(6, 182, 212, 0.1)'
-        }}
-      />
-
-      {/* Glassmorphism Background Orbs */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 8,
+          duration: 15,
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute top-1/4 left-1/3 w-96 h-96 bg-gradient-to-r from-primary-500/10 to-cyan-500/10 rounded-full blur-3xl"
-      />
-      
-      <motion.div
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.15, 0.05, 0.15],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-gradient-to-l from-cyan-500/8 to-primary-500/8 rounded-full blur-3xl"
+        className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary-500/5 rounded-full blur-3xl"
       />
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Section Header - Awwwards Style */}
-        <div className="mb-24 sm:mb-32 text-center relative">
-          {/* Floating Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            whileHover={{ scale: 1.05, y: -2 }}
-            className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl text-primary-400 text-sm font-medium mb-8 shadow-2xl"
-            style={{
-              background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)'
-            }}
-          >
-            <div className="w-2 h-2 bg-primary-400 rounded-full animate-pulse" />
-            Our Process
-          </motion.div>
-          
-          {/* Main Title with Gradient Text */}
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
+        {/* Section Header - Clean & Simple */}
+        <div className="mb-20 text-center">
+          <motion.span 
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
-            style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #94a3b8 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              textShadow: '0 0 40px rgba(59, 130, 246, 0.3)'
-            }}
+            transition={{ duration: 0.6 }}
+            className="inline-block text-sm font-semibold tracking-[0.2em] uppercase text-primary-400 mb-6"
           >
-            How We Work
-            <br />
-            <span className="text-4xl sm:text-5xl lg:text-6xl bg-gradient-to-r from-primary-400 to-cyan-400 bg-clip-text text-transparent">
+            Our Process
+          </motion.span>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+          >
+            <span className="block text-white mb-3">
+              How We Work
+            </span>
+            <span className="block text-primary-400">
               With You
             </span>
           </motion.h2>
           
-          {/* Subtitle with Glassmorphism */}
-          <motion.div
+          <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="max-w-4xl mx-auto"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
           >
-            <div 
-              className="p-8 rounded-3xl backdrop-blur-xl border border-white/10"
-              style={{
-                background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-                boxShadow: '0 20px 40px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1)'
-              }}
-            >
-              <p className="text-xl text-gray-300 leading-relaxed">
-                We understand first, build second. No generic solutions—just systems tailored to your specific bottlenecks.
-              </p>
-            </div>
-          </motion.div>
+            We understand first, build second. No generic solutions—just systems tailored to your specific bottlenecks.
+          </motion.p>
         </div>
 
-        {/* Timeline Steps - Awwwards Cards */}
+        {/* Timeline Steps - Clean Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
           {timelineSteps.map((step, index) => (
             <motion.div
               key={step.number}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              whileHover={{ 
-                y: -10,
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
-              className="group relative"
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              className="group"
             >
-              {/* Glassmorphism Card */}
-              <div 
-                className="relative p-8 rounded-3xl backdrop-blur-xl border border-white/10 overflow-hidden"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1)'
-                }}
-              >
-                {/* Animated Background Gradient */}
-                <motion.div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background: `linear-gradient(135deg, ${step.color === 'primary' ? 'rgba(59, 130, 246, 0.1)' : 'rgba(6, 182, 212, 0.1)'} 0%, transparent 100%)`
-                  }}
-                />
-                
+              <div className="p-8 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-colors duration-300">
                 {/* Number Badge */}
-                <div className="relative z-10 mb-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 border border-white/20 text-2xl font-bold text-white mb-4">
+                <div className="mb-6">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-500/20 text-xl font-bold text-primary-400 mb-4">
                     {step.number}
                   </div>
                   
                   <div className="flex items-center gap-3 mb-4">
-                    <div className={`p-3 rounded-xl ${step.color === 'primary' ? 'bg-primary-500/20' : 'bg-cyan-500/20'}`}>
-                      <step.icon className={`w-6 h-6 ${step.color === 'primary' ? 'text-primary-400' : 'text-cyan-400'}`} />
+                    <div className={`p-2 rounded-lg ${step.color === 'primary' ? 'bg-primary-500/20' : 'bg-cyan-500/20'}`}>
+                      <step.icon className={`w-5 h-5 ${step.color === 'primary' ? 'text-primary-400' : 'text-cyan-400'}`} />
                     </div>
-                    <h3 className="text-2xl font-bold text-white">{step.title}</h3>
+                    <h3 className="text-xl font-bold text-white">{step.title}</h3>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="relative z-10 text-gray-300 leading-relaxed mb-6">
+                <p className="text-gray-300 leading-relaxed mb-6">
                   {step.description}
                 </p>
 
                 {/* Activities List */}
-                <div className="relative z-10 space-y-3">
+                <div className="space-y-2">
                   {step.activities.map((activity, activityIndex) => (
-                    <motion.div
+                    <div
                       key={activityIndex}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: activityIndex * 0.1 }}
                       className="flex items-center gap-3 text-sm text-gray-400"
                     >
                       <div className={`w-1.5 h-1.5 rounded-full ${step.color === 'primary' ? 'bg-primary-400' : 'bg-cyan-400'}`} />
                       <span>{activity}</span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-
-                {/* Hover Effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                />
               </div>
             </motion.div>
           ))}
@@ -334,27 +231,16 @@ export default function ProcessTimeline() {
           {serviceCards.map((card, index) => (
             <motion.div
               key={card.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ 
-                y: -5,
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <div 
-                className="p-6 rounded-2xl backdrop-blur-xl border border-white/10 h-full"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)',
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1)'
-                }}
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="p-3 rounded-xl bg-primary-500/20">
-                    <card.icon className="w-6 h-6 text-primary-400" />
+              <div className="p-6 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors duration-300 h-full">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-primary-500/20">
+                    <card.icon className="w-5 h-5 text-primary-400" />
                   </div>
                   <h4 className="text-lg font-semibold text-white">{card.title}</h4>
                 </div>
@@ -366,25 +252,14 @@ export default function ProcessTimeline() {
 
         {/* CTA Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <div 
-            className="inline-flex items-center gap-4 px-8 py-4 rounded-2xl backdrop-blur-xl border border-white/10 mb-8"
-            style={{
-              background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1)'
-            }}
-          >
-            <Sparkles className="w-5 h-5 text-primary-400" />
-            <span className="text-white font-medium">Ready to transform your workflow?</span>
-          </div>
-          
           <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => {
               const element = document.querySelector('#contact');
@@ -392,21 +267,9 @@ export default function ProcessTimeline() {
                 element.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="group relative px-10 py-5 bg-gradient-to-r from-primary-500 to-cyan-500 rounded-2xl font-semibold text-lg text-white overflow-hidden shadow-2xl"
-            style={{
-              boxShadow: '0 20px 40px rgba(59, 130, 246, 0.3), 0 0 0 1px rgba(255,255,255,0.1)'
-            }}
+            className="px-8 py-4 bg-primary-500 hover:bg-primary-600 rounded-xl font-semibold text-lg text-white transition-colors duration-300"
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-primary-400 to-cyan-400"
-              initial={{ x: '100%' }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-            <span className="relative flex items-center gap-2">
-              Get a Process Review
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </span>
+            Get a Process Review
           </motion.button>
         </motion.div>
       </div>
