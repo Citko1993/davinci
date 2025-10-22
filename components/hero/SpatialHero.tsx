@@ -69,6 +69,7 @@ function MagneticButton({
 
 export default function SpatialHero() {
   const ref = useRef(null);
+  const [isMounted, setIsMounted] = useState(false);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -83,6 +84,10 @@ export default function SpatialHero() {
 
   const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
   const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
@@ -293,16 +298,18 @@ export default function SpatialHero() {
           >
              {/* Video container */}
              <div className="relative">
-               <video
-                 autoPlay
-                 loop
-                 muted
-                 playsInline
-                 className="w-full h-auto rounded-3xl"
-               >
-                 <source src="/make_new_hero_animation.webm" type="video/webm" />
-                 Your browser does not support the video tag.
-               </video>
+               {isMounted && (
+                 <video
+                   autoPlay
+                   loop
+                   muted
+                   playsInline
+                   className="w-full h-auto rounded-3xl"
+                 >
+                   <source src="/make_new_hero_animation.webm" type="video/webm" />
+                   Your browser does not support the video tag.
+                 </video>
+               )}
              </div>
             
           </motion.div>
