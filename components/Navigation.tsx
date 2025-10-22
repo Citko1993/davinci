@@ -10,8 +10,11 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
       
@@ -20,6 +23,7 @@ export default function Navigation() {
       const progress = Math.min(window.scrollY / totalHeight, 1);
       setScrollProgress(progress);
     };
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -44,10 +48,12 @@ export default function Navigation() {
       }`}
     >
       {/* Scroll Progress Indicator */}
-      <motion.div 
-        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary-500 to-cyan-500"
-        style={{ width: `${scrollProgress * 100}%`, opacity: scrollProgress > 0 ? 1 : 0 }}
-      />
+      {isMounted && (
+        <motion.div 
+          className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary-500 to-cyan-500"
+          style={{ width: `${scrollProgress * 100}%`, opacity: scrollProgress > 0 ? 1 : 0 }}
+        />
+      )}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
