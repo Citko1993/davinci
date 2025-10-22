@@ -82,77 +82,108 @@ export default function Navigation() {
                 href={item.href}
                 className="relative group"
               >
-                <motion.span
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index }}
-                  className="text-gray-300 hover:text-white transition-colors duration-300 font-medium text-sm xl:text-base"
-                >
-                  {item.name}
-                </motion.span>
-                <motion.div
-                  className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-primary-400 to-cyan-400"
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
+                {isMounted ? (
+                  <motion.span
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 * index }}
+                    className="text-gray-300 hover:text-white transition-colors duration-300 font-medium text-sm xl:text-base"
+                  >
+                    {item.name}
+                  </motion.span>
+                ) : (
+                  <span className="text-gray-300 hover:text-white transition-colors duration-300 font-medium text-sm xl:text-base">
+                    {item.name}
+                  </span>
+                )}
+                {isMounted && (
+                  <motion.div
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-primary-400 to-cyan-400"
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
               </Link>
             ))}
           </div>
 
           {/* CTA Button - Desktop */}
           <div className="hidden lg:block">
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => {
-                const element = document.querySelector('#contact');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              className="relative group px-5 xl:px-6 py-2.5 xl:py-3 bg-gradient-to-r from-primary-500 to-cyan-500 text-white rounded-full font-semibold overflow-hidden shadow-lg shadow-primary-500/20 text-sm xl:text-base whitespace-nowrap"
-            >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-primary-600 to-cyan-600"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-              <span className="relative">Free Consultation</span>
-            </motion.button>
+            {isMounted ? (
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  const element = document.querySelector('#contact');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="relative group px-5 xl:px-6 py-2.5 xl:py-3 bg-gradient-to-r from-primary-500 to-cyan-500 text-white rounded-full font-semibold overflow-hidden shadow-lg shadow-primary-500/20 text-sm xl:text-base whitespace-nowrap"
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-primary-600 to-cyan-600"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <span className="relative">Free Consultation</span>
+              </motion.button>
+            ) : (
+              <button
+                onClick={() => {
+                  const element = document.querySelector('#contact');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="relative group px-5 xl:px-6 py-2.5 xl:py-3 bg-gradient-to-r from-primary-500 to-cyan-500 text-white rounded-full font-semibold overflow-hidden shadow-lg shadow-primary-500/20 text-sm xl:text-base whitespace-nowrap"
+              >
+                <span className="relative">Free Consultation</span>
+              </button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-white"
-          >
-            <AnimatePresence mode="wait">
-              {isOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X size={24} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu size={24} />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.button>
+          {isMounted ? (
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden p-2 text-white"
+            >
+              <AnimatePresence mode="wait">
+                {isOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X size={24} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu size={24} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          ) : (
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden p-2 text-white"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          )}
         </div>
       </div>
 
