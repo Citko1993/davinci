@@ -121,76 +121,98 @@ export default function SpatialHero() {
         style={{ opacity, scale, y }}
         className="relative max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 py-20 sm:py-32 z-10"
       >
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center min-h-[80vh]">
           
-          {/* LEFT SIDE - 60% (3 columns) */}
-          <div className="lg:col-span-3 space-y-8 sm:space-y-12">
+          {/* LEFT SIDE - TEXT CONTENT (7 columns) */}
+          <div className="lg:col-span-7 space-y-8 lg:space-y-12">
             
-            {/* Floating badge */}
+            {/* Premium floating badge with micro-interactions */}
             <motion.div
-              initial={{ opacity: 0, y: -30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.33, 1, 0.68, 1] }}
+              initial={{ opacity: 0, y: -30, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="inline-flex"
             >
-              <div className="relative group">
-                <div className="absolute -inset-2 bg-gradient-to-r from-primary-500 to-cyan-500 rounded-full blur-lg opacity-30 group-hover:opacity-60 transition duration-1000" />
+              <div className="relative group cursor-pointer">
                 <motion.div 
-                  className="relative px-5 py-2.5 sm:px-6 sm:py-3 bg-dark-900/70 backdrop-blur-2xl rounded-full border border-white/20 flex items-center gap-3 shadow-2xl"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className="absolute -inset-1 bg-gradient-to-r from-primary-500 via-cyan-500 to-primary-500 rounded-full blur-md opacity-40 group-hover:opacity-70 transition-all duration-700"
+                  animate={{ 
+                    background: [
+                      'linear-gradient(45deg, rgb(59, 130, 246), rgb(34, 211, 238))',
+                      'linear-gradient(45deg, rgb(34, 211, 238), rgb(59, 130, 246))',
+                      'linear-gradient(45deg, rgb(59, 130, 246), rgb(34, 211, 238))'
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <motion.div 
+                  className="relative px-6 py-3 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-2xl rounded-full border border-white/20 flex items-center gap-3 shadow-2xl"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <motion.div 
-                    className="w-2 h-2 rounded-full bg-primary-400"
+                    className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-primary-400 to-cyan-400"
                     animate={{ 
-                      scale: [1, 1.3, 1],
-                      opacity: [1, 0.7, 1]
+                      scale: [1, 1.4, 1],
+                      opacity: [1, 0.6, 1],
+                      boxShadow: [
+                        '0 0 0 0 rgba(59, 130, 246, 0.4)',
+                        '0 0 0 8px rgba(59, 130, 246, 0)',
+                        '0 0 0 0 rgba(59, 130, 246, 0.4)'
+                      ]
                     }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                   />
-                  <span className="text-xs sm:text-sm font-medium text-gray-200 tracking-wide">
+                  <span className="text-sm font-medium text-white tracking-wide">
                     AI that actually works
                   </span>
+                  <motion.div
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <ArrowRight className="w-4 h-4 text-primary-400" />
+                  </motion.div>
                 </motion.div>
               </div>
             </motion.div>
 
-            {/* Headline */}
-            <div className="space-y-4">
-              <motion.h1 
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1]"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
-              >
-                <span className="block text-white mb-2">
-                  Stop wasting hours
-                </span>
-                <span 
-                  className="block"
-                  style={{
-                    background: 'linear-gradient(to right, rgb(96, 165, 250), rgb(34, 211, 238), rgb(59, 130, 246))',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                >
-                  on tasks AI can do
-                </span>
-              </motion.h1>
+             {/* Headline - consistent with site typography */}
+             <div className="space-y-4">
+               <motion.h1 
+                 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1]"
+                 initial={{ opacity: 0, y: 50 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
+               >
+                 <span className="block text-white mb-2">
+                   Stop wasting hours
+                 </span>
+                 <span 
+                   className="block"
+                   style={{
+                     background: 'linear-gradient(to right, rgb(96, 165, 250), rgb(34, 211, 238), rgb(59, 130, 246))',
+                     WebkitBackgroundClip: 'text',
+                     WebkitTextFillColor: 'transparent',
+                     backgroundClip: 'text',
+                   }}
+                 >
+                   on tasks AI can do
+                 </span>
+               </motion.h1>
 
-              {/* Subheadline */}
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
-                className="text-lg sm:text-xl lg:text-2xl text-gray-400 max-w-3xl leading-relaxed font-light"
-              >
-                We find what&apos;s draining your team&apos;s time, calculate the ROI, then build custom AI that actually saves you money.
-              </motion.p>
-            </div>
+               {/* Subheadline - consistent with site */}
+               <motion.p
+                 initial={{ opacity: 0, y: 30 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 1, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
+                 className="text-lg sm:text-xl lg:text-2xl text-gray-400 max-w-3xl leading-relaxed font-light"
+               >
+                 We find what&apos;s draining your team&apos;s time, calculate the ROI, then build custom AI that actually saves you money.
+               </motion.p>
+             </div>
 
-            {/* CTA buttons */}
+            {/* CTA buttons - consistent with site */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -222,7 +244,7 @@ export default function SpatialHero() {
               </MagneticButton>
             </motion.div>
 
-            {/* Trust indicator */}
+            {/* Trust indicator - consistent with site */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -262,37 +284,28 @@ export default function SpatialHero() {
             </motion.div>
           </div>
 
-          {/* RIGHT SIDE - 40% (2 columns) - PROCESS FLOW */}
-          <div className="hidden lg:block lg:col-span-2 perspective-deep">
-            <div className="space-y-6">
-              <ProcessFlowCard
-                number="01"
-                title="Discovery"
-                description="We map your workflows, interview your team, and identify where things break down."
-                icon={Brain}
-                delay={0.8}
-                color="primary"
-              />
-              
-              <ProcessFlowCard
-                number="02"
-                title="ROI Hunt"
-                description="We find where AI adds real value—not where it's trendy or cool."
-                icon={TrendingUp}
-                delay={1}
-                color="cyan"
-              />
-              
-              <ProcessFlowCard
-                number="03"
-                title="Build & Deploy"
-                description="Custom systems, integrations, training—everything working together."
-                icon={Rocket}
-                delay={1.2}
-                color="primary"
-              />
-            </div>
-          </div>
+          {/* RIGHT SIDE - PREMIUM VIDEO SECTION (5 columns) */}
+          <motion.div
+            initial={{ opacity: 0, x: 100, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 1.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 relative"
+          >
+             {/* Video container */}
+             <div className="relative">
+               <video
+                 autoPlay
+                 loop
+                 muted
+                 playsInline
+                 className="w-full h-auto rounded-3xl"
+               >
+                 <source src="/make_new_hero_animation.webm" type="video/webm" />
+                 Your browser does not support the video tag.
+               </video>
+             </div>
+            
+          </motion.div>
         </div>
       </motion.div>
 
