@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { ArrowRight, Brain, TrendingUp, Rocket } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import ProcessFlowCard from './ProcessFlowCard';
 import MeshGradient from './MeshGradient';
