@@ -12,14 +12,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     await resend.emails.send({
-      from: 'onboarding@resend.dev', // Domena Resend
+      from: 'onboarding@resend.dev', // Resend domain
       to: ['apps@davinci.agency'],
-      subject: `Nowa wiadomość od ${name}`,
+      subject: `New message from ${name}`,
       html: `
-        <h3>Nowa wiadomość z formularza kontaktowego</h3>
-        <p><strong>Od:</strong> ${name}</p>
+        <h3>New message from contact form</h3>
+        <p><strong>From:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Wiadomość:</strong></p>
+        <p><strong>Message:</strong></p>
         <p>${message}</p>
       `,
     });

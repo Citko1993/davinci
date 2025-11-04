@@ -249,44 +249,7 @@ export default function SpatialHero() {
               </MagneticButton>
             </motion.div>
 
-            {/* Trust indicator - consistent with site */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 1 }}
-              className="flex items-center gap-2 text-sm text-gray-500"
-            >
-              <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full border-2 border-dark-950 overflow-hidden">
-                  <Image
-                    src="/testimonials/alex-avatar.png"
-                    alt="Alex"
-                    width={32}
-                    height={32}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="w-8 h-8 rounded-full border-2 border-dark-950 overflow-hidden">
-                  <Image
-                    src="/testimonials/robert-avatar.jpeg"
-                    alt="Robert"
-                    width={32}
-                    height={32}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="w-8 h-8 rounded-full border-2 border-dark-950 overflow-hidden">
-                  <Image
-                    src="/testimonials/d3c4e014-708f-4e23-9bc1-af0c18f9593e.jpg"
-                    alt="MyTherapy"
-                    width={32}
-                    height={32}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-              <span>Already saving hours for teams across Europe</span>
-            </motion.div>
+            
           </div>
 
           {/* RIGHT SIDE - PREMIUM VIDEO SECTION (5 columns) */}

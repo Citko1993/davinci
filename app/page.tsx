@@ -3,7 +3,6 @@ import SpatialHero from "@/components/hero/SpatialHero";
 import ProcessTimeline from "@/components/sections/ProcessTimeline";
 import VideoShowcase from "@/components/sections/VideoShowcase";
 import CaseStudies from "@/components/sections/CaseStudies";
-import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
@@ -16,7 +15,6 @@ export default function Home() {
       <ProcessTimeline />
       <VideoShowcase />
       <CaseStudies />
-      <Testimonials />
       <Contact />
       <Footer />
       <StickyMobileCTA />

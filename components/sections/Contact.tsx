@@ -198,7 +198,7 @@ export default function Contact() {
                     transition={{ duration: 0.3 }}
                   />
                   <span className="relative flex items-center justify-center gap-2">
-                    {isSubmitting ? 'Wysyłanie...' : 'Send Message'}
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                     {!isSubmitting && <Send className="w-5 h-5" />}
                   </span>
                 </motion.button>
@@ -207,13 +207,13 @@ export default function Contact() {
               {/* Status messages */}
               {submitStatus === 'success' && (
                 <div className="mt-6 p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-400 text-center">
-                  Wiadomość została wysłana! Odpowiemy w ciągu 24 godzin.
+                  Message sent! We&apos;ll respond within 24 hours.
                 </div>
               )}
 
               {submitStatus === 'error' && (
                 <div className="mt-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-center">
-                  Wystąpił błąd podczas wysyłania. Spróbuj ponownie.
+                  An error occurred while sending. Please try again.
                 </div>
               )}
 

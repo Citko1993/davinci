@@ -65,25 +65,6 @@ export default function CaseStudies() {
       platform: 'Web',
     },
     {
-      id: 'cloudcook',
-      title: 'CloudCook',
-      subtitle: 'Revolutionizing Summer Camp Food Delivery',
-      industry: 'Kitchen management',
-      duration: '8 weeks',
-      description: 'CloudCook is a comprehensive kitchen management solution designed to streamline food service operations in summer camps.',
-      challenge: 'Creating an application aimed at optimizing the food ordering and delivery process for summer camps throughout the USA. Primary goal was to create a system that, based on forecasts of expected guests and predetermined menu, would automatically calculate required product quantities.',
-      solution: 'After thorough analysis, built application from scratch in Bubble.io. Conducted workshops to refine specifications and ensure full understanding of client requirements.',
-      results: {
-        conclusion: 'Delivered a comprehensive tool that not only streamlines the kitchen management process but also automates the ordering process. Despite short execution time, exceeded client\'s expectations.',
-        testimonial: 'I\'ve had a rewarding experience with Davinci while developing my application, appreciating their knowledgeable, reliable, and comprehensive approach.',
-        author: 'Alex Lagios, Founder & Strategist, Cloud Cook'
-      },
-      image: 'https://cdn.prod.website-files.com/65cfc8532ce53267d57e7c23/65d1f5d4eafc1e4b591704b2_CloudCook.jpg',
-      tags: ['SaaS', 'Food Service', 'Bubble.io'],
-      expertise: ['Analysis', 'Development'],
-      platform: 'Web',
-    },
-    {
       id: 'skag',
       title: 'Skag.AI',
       subtitle: 'Streamlining SEM with AI',

@@ -17,19 +17,6 @@ const testimonials = [
       avatar: "/testimonials/robert-avatar.jpeg",
       logo: "/testimonials/sagiton-logo.png"
     }
-  },
-  {
-    id: 2,
-    quote: "Appreciating their knowledgeable, reliable, and comprehensive approach!",
-    content: "I've had a rewarding experience with Davinci while developing my application, appreciating their knowledgeable, reliable, and comprehensive approach. Their ability to suggest solutions and provide updates has been impressive. I'm eager to collaborate with them on future projects.",
-    rating: 5,
-    author: {
-      name: "Alex Lagios",
-      position: "Founder",
-      company: "Cloud Cook",
-      avatar: "/testimonials/alex-avatar.png",
-      logo: "/testimonials/cloude-cook.png"
-    }
   }
 ];
 
