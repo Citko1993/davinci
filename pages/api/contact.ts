@@ -25,9 +25,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     res.status(200).json({ message: 'Email sent successfully' });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error sending email:', error);
-    console.error('Error details:', JSON.stringify(error, null, 2));
-    res.status(500).json({ message: 'Error sending email', error: error.message });
+    try {
+      console.error('Error details:', JSON.stringify(error, null, 2));
+    } catch {
+      // ignore JSON stringify errors
+    }
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ message: 'Error sending email', error: message });
   }
 }
